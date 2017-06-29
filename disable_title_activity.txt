@@ -1,0 +1,4 @@
+    private void disableTitleActivity(Activity activity)
+    {
+        activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
