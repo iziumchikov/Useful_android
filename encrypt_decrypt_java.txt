@@ -1,0 +1,23 @@
+//encrypt
+public static byte[] encryptString(String text, SecretKey secret) throws Exception
+{
+    Cipher cipher = null;
+    cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+    cipher.init(Cipher.ENCRYPT_MODE, secret);
+    return cipher.doFinal(text.getBytes("UTF-8"));
+}
+
+//decrypt
+public static String decryptString(byte[] cipherText, SecretKey secret) throws Exception
+{
+    Cipher cipher = null;
+    cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+    cipher.init(Cipher.DECRYPT_MODE, secret);
+    return new String(cipher.doFinal(cipherText), "UTF-8");
+}
+
+//key generator
+public static SecretKey generateKey(String password) throws Exception
+{
+    return secret = new SecretKeySpec(password.getBytes(), "AES");
+}

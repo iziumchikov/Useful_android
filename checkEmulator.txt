@@ -1,0 +1,32 @@
+//Only for Standart ANdroid Studion emulator
+//For example, standart Android Studio emulator 
+//sets such variables:
+//    [1] ro.hardware = goldfish
+//    [2] ro.kernel.qemu = 1
+//    [3] ro.product.model = sdk
+//To check:
+
+public static boolean checkEmulator()
+{
+    try
+    {
+	boolean goldfish = getSystemProperty("ro.hardware").contains("goldfish");
+	boolean emu = getSystemProperty("ro.kernel.qemu").length() > 0;
+	boolean sdk = getSystemProperty("ro.product.model").contains("sdk");
+	if(goldish || emu || sdk)
+	{
+	    return true;
+	}
+    }
+    catch (Exception e) {}
+    return false;
+}
+
+//android.os.SystemProperties hiden and unavailable in SDK,
+//so we need to use reflection
+private static String getSystemProperty(String name) throws Exception
+{
+    Class sysProp = Class.forName("android.os.SystemProperties");
+    return (String) sysProp.getMethod("get", new Class[] { String.class }).
+	invoke(sysProp. new Object[] { name });
+}

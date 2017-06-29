@@ -1,0 +1,8 @@
+// If true - Play Store
+// If false = ALARM!!!
+public static boolean checkInstaller(Context con)
+{
+    final String source = context.getPackageManager().
+	getInstallerPackageName(con.getPackageName());
+    return source != null && source.startsWith("com.android.vending");
+}
