@@ -1,0 +1,27 @@
+    public void logCursorInfo(Cursor c) {
+
+        Log.i(TAG, "*** Cursor Begin *** " + " Rows: " +
+                c.getCount() + " Columns: " + c.getColumnCount());
+
+        // Print column names
+        String header = "|";
+        for (int i = 0; i < c.getColumnCount(); i++)
+        {
+
+            header += c.getColumnName(i) + " || ";
+        }
+        Log.i(TAG, "Columns " + header);
+
+        // Print records
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            String rowResults = "|| ";
+            for (int i = 0; i < c.getColumnCount(); i++) {
+                rowResults = rowResults.concat(c.getString(i) + " || ");
+            }
+            Log.i(TAG, "Row " + c.getPosition() + ": " + rowResults);
+
+            c.moveToNext();
+        }
+        Log.i(TAG, "*** Cursor End ***");
+    }
